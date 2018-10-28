@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Car Companion</string>
+    <string name="currentCarPicStr">PictureOfCurrentCar</string>
+    <string name="CarMessage">Your car is nearing</string>
+</resources>
