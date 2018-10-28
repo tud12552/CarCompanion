@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Car Companion</string>
     <string name="currentCarPicStr">PictureOfCurrentCar</string>
-    <string name="CarMessage">Your car is nearing</string>
+    <string name="UpcomingCarMaintStr">Your car is nearing</string>
+    <string name="RecentGasStr">Did you refuel recently\?</string>
+    <string name="CarMaintHighTitleStr">Car Maintenance</string>
+    <string name="RefuelGalStr">Number of\nGallons</string>
+    <string name="RefuelGasGalHintStr">12.000</string>
+    <string name="RefuelGalPriceStr">Price per\nGallon</string>
+    <string name="RefuelGasPriceHintStr">\$3.00</string>
+    <string name="AddGasBtnStr">Add Gas</string>
+    <string name="ViewMaintBtnStr">View All Maintenance Needed</string>
 </resources>
