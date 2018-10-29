@@ -1,0 +1,14 @@
+<resources>
+    <string-array name="carModelsArray">
+        <item>Suburban</item>
+        <item>Camry</item>
+        <item>F150</item>
+        <item>Grand Cherokee</item>
+        <item>Fit</item>
+        <item>Elantra</item>
+        <item>CX-5</item>
+        <item>Q5</item>
+        <item>GLA-Class</item>
+        <item>RX</item>
+    </string-array>
+</resources>

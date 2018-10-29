@@ -1,0 +1,14 @@
+<resources>
+    <string-array name="carMakesArray">
+        <item>Chevrolet</item>
+        <item>Toyota</item>
+        <item>Ford</item>
+        <item>Jeep</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Mazda</item>
+        <item>Audi</item>
+        <item>Mercedes</item>
+        <item>Lexus</item>
+    </string-array>
+</resources>

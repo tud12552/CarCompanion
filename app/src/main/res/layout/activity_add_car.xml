@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CarMaintHighLevel">
+
+    <TextView
+        android:id="@+id/txtViewScreenTitle"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/AddACarTitleStr"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/makeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/CarMakeStr"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/makeDropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewScreenTitle" />
+
+    <TextView
+        android:id="@+id/modelLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/CarModelStr"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/modelDropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/makeLabel" />
+
+    <TextView
+        android:id="@+id/yearLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/CarYearStr"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/mileageLabel"
+        app:layout_constraintEnd_toStartOf="@+id/enterYearBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modelLabel" />
+
+    <TextView
+        android:id="@+id/mileageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/CarCurrentMileageStr"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/lastOilChangeLabel"
+        app:layout_constraintEnd_toStartOf="@+id/enterMileageBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearLabel" />
+
+    <TextView
+        android:id="@+id/estMileageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:text="@string/CarEstMileagePerYearStr"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/uploadPhotoLabel"
+        app:layout_constraintEnd_toStartOf="@+id/estMileageBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastOilChangeLabel" />
+
+    <TextView
+        android:id="@+id/uploadPhotoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/UploadPhotoStr"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addCarBtn"
+        app:layout_constraintEnd_toStartOf="@+id/uploadPhotoBtn"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/estMileageLabel" />
+
+    <TextView
+        android:id="@+id/lastOilChangeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/LastOilChangeStr"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/estMileageLabel"
+        app:layout_constraintEnd_toStartOf="@+id/lastOilChangeBox"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mileageLabel" />
+
+    <Spinner
+        android:id="@+id/makeDropdown"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/carMakesArray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewScreenTitle" />
+
+    <Spinner
+        android:id="@+id/modelDropdown"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:entries="@array/carModelsArray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/makeDropdown" />
+
+    <EditText
+        android:id="@+id/enterYearBox"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="@string/CarYearHintStr"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/enterMileageBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modelDropdown" />
+
+    <EditText
+        android:id="@+id/enterMileageBox"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/CarCurrentMileageHintStr"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterYearBox" />
+
+    <EditText
+        android:id="@+id/estMileageBox"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/CarEstMileagePerYearHintStr"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastOilChangeBox" />
+
+    <EditText
+        android:id="@+id/lastOilChangeBox"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="@string/LastOilChangeHintStr"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/estMileageBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterMileageBox" />
+
+    <ImageButton
+        android:id="@+id/uploadPhotoBtn"
+        android:layout_width="78dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/uploadCarPicStr"
+        app:layout_constraintBottom_toTopOf="@+id/addCarBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/estMileageBox"
+        app:layout_constraintVertical_bias="0.076"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/addCarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/AddCarBtnStr"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPhotoLabel" />
+
+
+</android.support.constraint.ConstraintLayout>
