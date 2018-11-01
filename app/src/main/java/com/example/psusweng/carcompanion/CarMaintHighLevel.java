@@ -11,5 +11,4 @@ public class CarMaintHighLevel extends AppCompatActivity {
         setContentView(R.layout.activity_car_maint_high_level);
     }
 
-    // Just want to make sure it works.
 }
