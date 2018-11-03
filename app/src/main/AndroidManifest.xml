@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MaintenanceActivity"
+            android:label="@string/CarMaintHighTitleStr">
+		</activity>
     </application>
 
 </manifest>
