@@ -31,14 +31,14 @@
     <string name="CarEstMileagePerYearHintStr">20000</string>
     <!-- The 2 strings below to be concatenated with make and model -->
     <string name="Your">Your</string>
-    <string name="ready">is ready for...</string>
+    <string name="ready">is ready for:</string>
     <!-- Use a place holder for now... -->
     <string name="Placeholder">PLACEHOLDER</string>
-	<string name="OilChange">Oil Change</string>
-	<string name="TireRot">Tire Rotation</string>
-	<string name="Search">Search for:</string>
-	<string name="PartStores">Auto Parts Stores</string>
-	<string name="Dealers">Dealerships</string>
+    <string name="OilChange">Oil Change</string>
+    <string name="TireRot">Tire Rotation</string>
+    <string name="Search">Search for:</string>
+    <string name="PartStores">Auto Parts Stores</string>
+    <string name="Dealers">Dealerships</string>
     <string name="TrackStats">Track Statistics</string>
     <string name="ExportReport">Export Maintenance Report</string>
 </resources>
