@@ -22,6 +22,15 @@ public class CarSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_select);
 
+
+        mTxtViewScreenTitle = findViewById(R.id.txtViewScreenTitle);
+        mTxtViewCar = findViewById(R.id.viewCarText);
+        mTxtViewAddCar = findViewById(R.id.addCarText);
+
+        mImageBtnAddCar = findViewById(R.id.addCarButton);
+        mImageBtnViewCar = findViewById(R.id.viewCarButton);
+
+
         mImageBtnViewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +44,7 @@ public class CarSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent goToAddCarScreen = new Intent(CarSelectActivity.this,AddCarActivity.class);
+                startActivity(goToAddCarScreen);
             }
         });
 

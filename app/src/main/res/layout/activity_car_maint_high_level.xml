@@ -50,7 +50,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBarMaintSoon" />
 
     <TextView
         android:id="@+id/txtViewGalsInput"
@@ -120,7 +120,7 @@
         app:srcCompat="@mipmap/hyundai_elantra_foreground" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarMaintSoon"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="166dp"
         android:layout_height="29dp"

@@ -11,6 +11,7 @@
     <string name="RefuelGasPriceHintStr">\$3.00</string>
     <string name="AddGasBtnStr">Add Gas</string>
     <string name="ViewMaintBtnStr">View All Maintenance Needed</string>
+    <string name="GasAddedMsgStr">You successfully updated gas.</string>
 
     <string name="CarCompanionTitleStr">Car Companion</string>
     <string name="ViewCarBtnStr">View Car</string>
