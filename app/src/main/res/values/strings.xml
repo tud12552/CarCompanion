@@ -42,4 +42,10 @@
     <string name="Dealers">Dealerships</string>
     <string name="TrackStats">Track Statistics</string>
     <string name="ExportReport">Export Maintenance Report</string>
+
+    <!-- strings for Stats Activity -->
+    <string name="StatsHeading">Track Car Statistics</string>
+    <string name="MileageStats">Mileage Statistics</string>
+    <string name="FuelStats">Fuel Usage Statistics</string>
+    <string name="SpeedStats">Speed Statistics</string>
 </resources>
