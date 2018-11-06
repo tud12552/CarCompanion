@@ -42,4 +42,7 @@
     <string name="Dealers">Dealerships</string>
     <string name="TrackStats">Track Statistics</string>
     <string name="ExportReport">Export Maintenance Report</string>
+
+    <string name="fiftyThousand">50000</string>
+
 </resources>

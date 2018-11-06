@@ -154,6 +154,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/CarYearHintStr"
+        android:autofillHints="@string/CarYearHintStr"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/enterMileageBox"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,6 +168,7 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/CarCurrentMileageHintStr"
+        android:autofillHints="@string/CarCurrentMileageHintStr"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterYearBox" />
@@ -179,6 +181,7 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/CarEstMileagePerYearHintStr"
+        android:autofillHints="@string/CarEstMileagePerYearHintStr"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastOilChangeBox" />
@@ -192,6 +195,7 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/LastOilChangeHintStr"
+        android:autofillHints="@string/LastOilChangeHintStr"
         android:inputType="date"
         app:layout_constraintBottom_toTopOf="@+id/estMileageBox"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,7 +203,7 @@
 
     <ImageButton
         android:id="@+id/uploadPhotoBtn"
-        android:layout_width="78dp"
+        android:layout_width="100dp"
         android:layout_height="69dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
@@ -209,7 +213,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/estMileageBox"
         app:layout_constraintVertical_bias="0.076"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@mipmap/hyundai_elantra_foreground" />
 
     <Button
         android:id="@+id/addCarBtn"
