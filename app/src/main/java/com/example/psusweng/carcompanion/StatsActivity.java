@@ -10,4 +10,10 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
     }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
 }

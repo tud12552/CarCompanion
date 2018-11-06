@@ -45,5 +45,12 @@ public class AddCarActivity extends AppCompatActivity
         mEditTxtYear = (EditText)findViewById(R.id.enterYearBox);
 
 
+
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
     }
 }

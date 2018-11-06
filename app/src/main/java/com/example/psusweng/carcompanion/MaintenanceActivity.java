@@ -10,4 +10,10 @@ public class MaintenanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
     }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
 }
