@@ -22,7 +22,6 @@ public class CarSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_select);
 
-
         mTxtViewScreenTitle = (TextView) findViewById(R.id.txtViewScreenTitle);
         mTxtViewCar = (TextView) findViewById(R.id.viewCarText);
         mTxtViewAddCar = (TextView) findViewById(R.id.addCarText);
@@ -31,11 +30,16 @@ public class CarSelectActivity extends AppCompatActivity {
         mImageBtnViewCar = (ImageButton) findViewById(R.id.viewCarButton);
 
 
+        final String currentCarMake = "@string/Chevy";
+        final String currentCarModel = "@string/Silverado";
+
         mImageBtnViewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent goToMaintenanceScreen = new Intent(CarSelectActivity.this, CarMaintHighLevel.class);
+                goToMaintenanceScreen.putExtra("CURRENT_CAR_MAKE",currentCarMake);
+                goToMaintenanceScreen.putExtra("CURRENT_CAR_MODEL",currentCarModel);
                 startActivity(goToMaintenanceScreen);
             }
         });

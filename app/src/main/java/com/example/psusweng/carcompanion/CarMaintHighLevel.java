@@ -48,7 +48,9 @@ public class CarMaintHighLevel extends AppCompatActivity {
 
         mProgressBarMaintSoon = (ProgressBar)findViewById(R.id.progressBarMaintSoon);
 
-
+        Intent previousScreenIntent = getIntent();
+        final String currentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
+        final String currentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
 
         mBtnAddGas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +60,18 @@ public class CarMaintHighLevel extends AppCompatActivity {
                 mGalOfGas = Integer.parseInt(mEditTxtRefuelGals.getText().toString());
 
             }
+        });
+
+        mBtnViewAllMaint.setOnClickListener(new View.OnClickListener()
+        {
+           @Override
+           public void onClick(View v)
+           {
+               Intent goToFullMaintenanceScreen = new Intent(CarMaintHighLevel.this,MaintenanceActivity.class);
+               goToFullMaintenanceScreen.putExtra("CURRENT_CAR_MAKE",currentCarMake);
+               goToFullMaintenanceScreen.putExtra("CURRENT_CAR_MODEL",currentCarModel);
+               startActivity(goToFullMaintenanceScreen);
+           }
         });
     }
 

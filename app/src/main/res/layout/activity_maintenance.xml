@@ -32,6 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CurrentCarPic"/>
 
+    <TextView
+        android:id="@+id/textViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/Search"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxTireRot" />
+
     <CheckBox
         android:id="@+id/checkBoxOilChange"
         android:layout_width="match_parent"
@@ -52,19 +65,6 @@
         android:text="@string/TireRot"
         app:layout_constraintStart_toStartOf="@+id/checkBoxOilChange"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxOilChange" />
-
-    <TextView
-        android:id="@+id/textViewSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="20sp"
-        android:text="@string/Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxTireRot" />
 
     <Button
         android:id="@+id/buttonPartStores"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="@+id/buttonPartStores"/>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButtonStats"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -112,6 +112,6 @@
         android:text="@string/ExportReport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonStats" />
 
 </android.support.constraint.ConstraintLayout>
