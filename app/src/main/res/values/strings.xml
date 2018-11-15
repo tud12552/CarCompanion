@@ -48,7 +48,4 @@
     <string name="MileageStats">Mileage Statistics</string>
     <string name="FuelStats">Fuel Usage Statistics</string>
     <string name="SpeedStats">Speed Statistics</string>
-
-    <string name="Chevy">Chevy</string>
-    <string name="Silverado">Silverado</string>
 </resources>
