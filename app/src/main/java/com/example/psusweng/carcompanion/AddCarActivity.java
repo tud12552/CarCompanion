@@ -1,7 +1,9 @@
 package com.example.psusweng.carcompanion;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -36,6 +38,7 @@ public class AddCarActivity extends AppCompatActivity
 
     private String mSelectedMake;
     private String mSelectedModel;
+    private static final String TAG = "AddCarActivity";
 
     DatabaseHelper mDatabaseHelper;
 
@@ -55,6 +58,8 @@ public class AddCarActivity extends AppCompatActivity
 
         mBtnAddCar = (Button)findViewById(R.id.addCarBtn);
 
+        mSpinModel.setEnabled(false);
+
 
         mDatabaseHelper = new DatabaseHelper(this);
 
@@ -63,7 +68,12 @@ public class AddCarActivity extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mSelectedMake = mSpinMake.getItemAtPosition(position).toString();
-                toastMessage("You chose " + mSelectedMake);
+
+                if(!mSelectedMake.equals("-"))
+                {
+                    toastMessage("You chose " + mSelectedMake);
+                    mSpinModel.setEnabled(true);
+                }
             }
 
             @Override
@@ -76,7 +86,10 @@ public class AddCarActivity extends AppCompatActivity
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mSelectedModel = mSpinModel.getItemAtPosition(position).toString();
-                toastMessage("You chose " + mSelectedModel);
+                if(!mSelectedMake.equals("-"))
+                {
+                    toastMessage("You chose " + mSelectedModel);
+                }
             }
 
             @Override
@@ -94,27 +107,39 @@ public class AddCarActivity extends AppCompatActivity
                 String miles = mEditTxtMilage.getText().toString();
                 String yearlyMileage = mEditTxtEstMilesYear.getText().toString();
                 String lastOilChange = mEditTxtOilChange.getText().toString();
-                String[] NewCar = new String[]{make, model, year, miles, yearlyMileage, lastOilChange};
 
-//                Boolean okToAdd = false;
-//
-//                for (int i = 0; i <= NewCar.length; i++)
-//                {
-//                    if (NewCar[i].isEmpty()) {
-//                        okToAdd = false;
-//                        break;
-//                    } else {
-//                        okToAdd = true;
-//                    }
-//                }
-//                if(okToAdd)
-//                {
-                    AddNewCar(make,model,year,miles,yearlyMileage,lastOilChange);
-//                }
-//                else
-//                {
-//                    toastMessage("You must inset all car information.");
-//                }
+                Boolean okToAdd = true;
+                Boolean loopBool = true;
+                int i = 0;
+
+                String[] NewCar = new String[6];
+                NewCar[0] = make;
+                NewCar[1] = model;
+                NewCar[2] = year;
+                NewCar[3] = miles;
+                NewCar[4] = yearlyMileage;
+                NewCar[5] = lastOilChange;
+
+                while(i < 6)
+                {
+                    if(NewCar[i].length() <= 0 || NewCar[i] == null)
+                    {
+                        okToAdd = false;
+                        Log.d(TAG, "checkingNewCar: Failed");
+                        toastMessage("A field is empty.");
+                        break;
+                    }
+                        i++;
+
+                }
+
+
+                if(okToAdd)
+                {
+                    AddNewCar(make, model, year, miles, yearlyMileage, lastOilChange);
+                    Intent goToCarSelect = new Intent(AddCarActivity.this, CarSelectActivity.class);
+                    startActivity(goToCarSelect);
+                }
             }
         });
     }

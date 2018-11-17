@@ -1,5 +1,6 @@
 <resources>
     <string-array name="carMakesArray">
+        <item>-</item>
         <item>Chevrolet</item>
         <item>Toyota</item>
         <item>Ford</item>

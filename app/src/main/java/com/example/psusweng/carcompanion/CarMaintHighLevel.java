@@ -21,10 +21,13 @@ public class CarMaintHighLevel extends AppCompatActivity {
     private TextView mTxtViewFuelPrice = null;
     private Button mBtnAddGas = null;
     private Button mBtnViewAllMaint = null;
+    private Button mBtnDelete = null;
     private EditText mEditTxtRefuelGals =  null;
     private EditText mEditTxtRefuelGalsPrice = null;
     private ImageView mImageViewCurrentCarPic = null;
     private ProgressBar mProgressBarMaintSoon = null;
+
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class CarMaintHighLevel extends AppCompatActivity {
 
         mBtnAddGas = (Button)findViewById(R.id.btnAddGas);
         mBtnViewAllMaint = (Button)findViewById(R.id.btnViewAllMaint);
+        mBtnDelete = (Button)findViewById(R.id.btnDelete);
+
 
         mEditTxtRefuelGals = (EditText) findViewById(R.id.editTxtRefuelGals);
         mEditTxtRefuelGalsPrice = (EditText)findViewById(R.id.editTxtRefuelGalsPrice);
@@ -48,9 +53,18 @@ public class CarMaintHighLevel extends AppCompatActivity {
 
         mProgressBarMaintSoon = (ProgressBar)findViewById(R.id.progressBarMaintSoon);
 
+        databaseHelper = new DatabaseHelper(this);
+
         Intent previousScreenIntent = getIntent();
+        final String currentCarYear = previousScreenIntent.getStringExtra("CURRENT_CAR_YEAR");
         final String currentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
         final String currentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
+        final String currentCarMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_MILES");
+        final String currentOilChange = previousScreenIntent.getStringExtra("CURRENT_CAR_OIL");
+        final String currentYearlyMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_YEAR_MILES");
+
+        final String[]currentCar = new String[]{currentCarYear, currentCarMake, currentCarModel, currentCarMiles, currentYearlyMiles, currentOilChange};
+//        final String[]currentCar = new String[]{currentCarMake, currentCarModel};
 
         mTxtViewUpcomingMaint.setText("Your " + currentCarMake + " " + currentCarModel + " is nearing: " + "");
 
@@ -75,6 +89,18 @@ public class CarMaintHighLevel extends AppCompatActivity {
                startActivity(goToFullMaintenanceScreen);
            }
         });
+
+        mBtnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseHelper.deleteCar(currentCar);
+
+                toastMessage("Deleted from database.");
+
+                Intent goBack = new Intent(CarMaintHighLevel.this,ListViewCars.class);
+                startActivity(goBack);
+            }
+        });
     }
 
     @Override
@@ -82,5 +108,10 @@ public class CarMaintHighLevel extends AppCompatActivity {
     {
         super.onResume();
     }
+
+public void toastMessage(String msg)
+        {
+        Toast.makeText(getApplicationContext(), msg,Toast.LENGTH_SHORT).show();
+        }
 
 }

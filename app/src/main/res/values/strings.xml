@@ -48,4 +48,7 @@
     <string name="MileageStats">Mileage Statistics</string>
     <string name="FuelStats">Fuel Usage Statistics</string>
     <string name="SpeedStats">Speed Statistics</string>
+
+    <string name="DeleteCar">DELETE</string>
+    <string name="deleteAll">Delete All Cars</string>
 </resources>

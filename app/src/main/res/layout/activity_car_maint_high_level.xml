@@ -29,7 +29,6 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
-        android:text="@string/UpcomingCarMaintStr"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -110,12 +109,10 @@
         android:id="@+id/CurrentCarPic"
         android:layout_width="165dp"
         android:layout_height="130dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="108dp"
         android:contentDescription="@string/currentCarPicStr"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewScreenTitle"
         app:srcCompat="@mipmap/hyundai_elantra_foreground" />
 
@@ -135,14 +132,13 @@
         android:id="@+id/btnAddGas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="8dp"
         android:text="@string/AddGasBtnStr"
-        app:layout_constraintBottom_toTopOf="@+id/btnViewAllMaint"
+        app:layout_constraintBottom_toTopOf="@+id/btnDelete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewRecentGas"
-        app:layout_constraintVertical_bias="0.689" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewRecentGas" />
 
     <Button
         android:id="@+id/btnViewAllMaint"
@@ -156,5 +152,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTxtRefuelGalsPrice" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/red"
+        android:fadingEdge="horizontal|vertical"
+        android:fadingEdgeLength="20dp"
+        android:padding="10dp"
+        android:text="@string/DeleteCar"
+        app:layout_constraintBottom_toTopOf="@+id/btnViewAllMaint"
+        app:layout_constraintEnd_toEndOf="@+id/btnAddGas"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnAddGas" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,9 +1,12 @@
 <resources>
     <string-array name="carModelsArray">
+        // DO NOT USE SPACES FOR MODEL NAME
+        // USE A DASH \-\ INSTEAD. (Ex: 'Grand Cherokee' should be 'Grand-Cherokee'
+        <item>-</item>
         <item>Suburban</item>
         <item>Camry</item>
         <item>F150</item>
-        <item>Grand Cherokee</item>
+        <item>Grand-Cherokee</item>
         <item>Fit</item>
         <item>Elantra</item>
         <item>CX-5</item>

@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context)
     {
-        super(context, TABLE_NAME, null, 2);
+        super(context, TABLE_NAME, null, 3);
     }
 
     @Override
@@ -82,13 +82,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    public Cursor getItemID(String name)
+    public Cursor getOneCar(String[] carInfo) // carInfo is organized as Year, Make, Model, and Miles.
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'";
+        // SELECT * FROM Orders WHERE Customer="Smith";
+        //String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COL0 + "=" + id;
 
-        Cursor data = db.rawQuery(query, null);
+        String selection = COL1 + "=? and " + COL2 + "=? and " + COL3 + "=? and " + COL4 + "=?";
+
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + selection, carInfo);
 
         return data;
+    }
+
+
+    public void deleteCar(String[] car)  // car is organized as Year, Make, Model, and Miles.
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_NAME,"year=? and make=? and model=? and miles=?",new String[]{car[0],car[1],car[2],car[3]});
+
+    }
+
+    public void deleteAllCars()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_NAME,null,null);
     }
 }
