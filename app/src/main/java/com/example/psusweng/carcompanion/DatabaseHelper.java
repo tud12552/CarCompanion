@@ -21,20 +21,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL3 = "model";
     public static final String COL4 = "miles";
     public static final String COL5 = "yearly_miles";
-    public static final String COL6 = "lat_oil_change";
+    public static final String COL6 = "last_oil_change";
 
     public DatabaseHelper(Context context)
     {
-        super(context, TABLE_NAME, null, 1);
+        super(context, TABLE_NAME, null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (" +
-                COL0 + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL1 + " TEXT," + COL2 +
-                " TEXT," + COL3 +" TEXT," + COL4 +" TEXT," + COL5 +" TEXT," + COL6 +
-                "TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COL1 + " TEXT, " + COL2 +
+                " TEXT, " + COL3 + " TEXT, " + COL4 + " TEXT, " + COL5 + " TEXT, " + COL6 +
+                " TEXT)";
 
         db.execSQL(createTable);
     }
@@ -76,6 +76,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
+
+        Cursor data = db.rawQuery(query, null);
+
+        return data;
+    }
+
+    public Cursor getItemID(String name)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'";
 
         Cursor data = db.rawQuery(query, null);
 

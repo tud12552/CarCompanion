@@ -24,6 +24,7 @@
         <activity
             android:name=".StatsActivity"
             android:label="@string/StatsHeading" />
+        <activity android:name=".ListViewCars"></activity>
     </application>
 
 </manifest>

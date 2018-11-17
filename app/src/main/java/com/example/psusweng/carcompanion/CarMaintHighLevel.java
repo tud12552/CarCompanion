@@ -52,6 +52,8 @@ public class CarMaintHighLevel extends AppCompatActivity {
         final String currentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
         final String currentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
 
+        mTxtViewUpcomingMaint.setText("Your " + currentCarMake + " " + currentCarModel + " is nearing: " + "");
+
         mBtnAddGas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

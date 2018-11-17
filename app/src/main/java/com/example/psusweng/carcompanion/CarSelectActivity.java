@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class CarSelectActivity extends AppCompatActivity {
 
+    private static final String TAG = "CarSelectActivity";
+
     private TextView mTxtViewScreenTitle = null;
     private TextView mTxtViewCar = null;
     private TextView mTxtViewAddCar = null;
@@ -37,9 +39,7 @@ public class CarSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent goToMaintenanceScreen = new Intent(CarSelectActivity.this, CarMaintHighLevel.class);
-                goToMaintenanceScreen.putExtra("CURRENT_CAR_MAKE",currentCarMake);
-                goToMaintenanceScreen.putExtra("CURRENT_CAR_MODEL",currentCarModel);
+                Intent goToMaintenanceScreen = new Intent(CarSelectActivity.this, ListViewCars.class);
                 startActivity(goToMaintenanceScreen);
             }
         });

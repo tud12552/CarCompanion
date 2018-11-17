@@ -94,8 +94,8 @@ public class AddCarActivity extends AppCompatActivity
                 String miles = mEditTxtMilage.getText().toString();
                 String yearlyMileage = mEditTxtEstMilesYear.getText().toString();
                 String lastOilChange = mEditTxtOilChange.getText().toString();
-//                String[] NewCar = new String[]{make, model, year, miles, yearlyMileage, lastOilChange};
-//
+                String[] NewCar = new String[]{make, model, year, miles, yearlyMileage, lastOilChange};
+
 //                Boolean okToAdd = false;
 //
 //                for (int i = 0; i <= NewCar.length; i++)
@@ -113,7 +113,7 @@ public class AddCarActivity extends AppCompatActivity
 //                }
 //                else
 //                {
-//                    toastMessage("You must inset a name.");
+//                    toastMessage("You must inset all car information.");
 //                }
             }
         });
