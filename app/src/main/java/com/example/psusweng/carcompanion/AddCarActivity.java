@@ -74,6 +74,10 @@ public class AddCarActivity extends AppCompatActivity
                     toastMessage("You chose " + mSelectedMake);
                     mSpinModel.setEnabled(true);
                 }
+                else if(mSelectedMake.equals("Other"))
+                {
+                    // Create the new intent here to add a custom car and add to the appropiate database.
+                }
             }
 
             @Override

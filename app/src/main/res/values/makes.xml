@@ -11,5 +11,6 @@
         <item>Audi</item>
         <item>Mercedes</item>
         <item>Lexus</item>
+        <item>Other</item>
     </string-array>
 </resources>
