@@ -27,14 +27,20 @@ public class MaintenanceActivity extends AppCompatActivity {
 
     private ImageButton mImageBtnStats = null;
 
+    String mCurrentCarModel, mCurrentCarMake;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
 
         Intent previousScreenIntent = getIntent();
-        final String mCurrentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
-        final String mCurrentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
+        mCurrentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
+        mCurrentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
+
+        mTxtViewReadyFor = (TextView)findViewById(R.id.textViewReadyFor);
+
+        mTxtViewReadyFor.setText("Maintenance Needed for: " + mCurrentCarMake + " " + mCurrentCarModel);
 
         mBtnPartStore = (Button)findViewById(R.id.buttonPartStores);
         mBtnDealers = (Button)findViewById(R.id.buttonDealers);
