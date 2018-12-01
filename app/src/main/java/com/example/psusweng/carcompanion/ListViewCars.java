@@ -59,6 +59,10 @@ public class ListViewCars extends AppCompatActivity {
             public void onClick(View v) {
                 mDatabaseHelper.deleteAllCars();
 
+                DatabaseReference delRef =  firebaseDatabase.getInstance().getReference("UserCars");
+
+                delRef.removeValue();
+
                 toastMessage("All cars deleted.");
 
                 Intent goToCarSelect = new Intent(ListViewCars.this,CarSelectActivity.class);
