@@ -2,16 +2,26 @@ package com.example.psusweng.carcompanion;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class AddCarActivity extends AppCompatActivity
 {
@@ -31,7 +41,14 @@ public class AddCarActivity extends AppCompatActivity
     private String mSelectedModel;
     private static final String TAG = "AddCarActivity";
 
-    DatabaseHelper mDatabaseHelper;
+    private ArrayList<String> makes;
+
+    private int i = 0;
+
+//    DatabaseHelper mDatabaseHelper;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    DatabaseReference makesRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +69,10 @@ public class AddCarActivity extends AppCompatActivity
         mSpinModel.setEnabled(false);
 
 
-        mDatabaseHelper = new DatabaseHelper(this);
-
+//        mDatabaseHelper = new DatabaseHelper(this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("UserCars");
+        makesRef = firebaseDatabase.getReference("Makes");
 
         mSpinMake.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -141,8 +160,14 @@ public class AddCarActivity extends AppCompatActivity
 
     public void AddNewCar(String make, String model, String year, String miles, String YearlyMiles, String LastOilChange)
     {
-        boolean insertData = mDatabaseHelper.addNewCar(make, model, year, miles, YearlyMiles, LastOilChange);
+//        boolean insertData = mDatabaseHelper.addNewCar(make, model, year, miles, YearlyMiles, LastOilChange);
+        // String LastOilChange, int Year, int EstYearlyMiles, int Mileage, String Model, String Make
+        CarHelper newCar = new CarHelper(LastOilChange, Integer.parseInt(year), Integer.parseInt(YearlyMiles), Integer.parseInt(miles), model, make);
+        databaseReference.push().setValue(newCar);
 
+        makesRef.push().setValue(make);
+
+    boolean insertData = true;
         if(insertData)
         {
             toastMessage("Car Successfully Added.");

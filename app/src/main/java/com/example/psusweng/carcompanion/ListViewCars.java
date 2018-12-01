@@ -97,11 +97,31 @@ public class ListViewCars extends AppCompatActivity {
     public void LoadFirebaseCars()
     {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+        databaseReference = firebaseDatabase.getReference("UserCars");
 
         listData = new ArrayList<>();
 
-        databaseReference.addChildEventListener(new ChildEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dbCars.clear();
+                for(DataSnapshot databaseCars : dataSnapshot.getChildren()) {
+
+                    CarHelper car = databaseCars.getValue(CarHelper.class);
+
+                    displayCarsInListView(car);
+                    Log.d(TAG, "A car was added.");
+                    dbCars.add(car);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /*databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 dbCars.clear();
@@ -136,9 +156,10 @@ public class ListViewCars extends AppCompatActivity {
             }
 
 
-        });
+        });*/
 
     }
+
 
     public void displayCarsInListView(CarHelper car)
     {
