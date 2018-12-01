@@ -31,10 +31,6 @@ public class CarSelectActivity extends AppCompatActivity {
         mImageBtnAddCar = (ImageButton) findViewById(R.id.addCarButton);
         mImageBtnViewCar = (ImageButton) findViewById(R.id.viewCarButton);
 
-
-        final String currentCarMake = "@string/Chevy";
-        final String currentCarModel = "@string/Silverado";
-
         mImageBtnViewCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

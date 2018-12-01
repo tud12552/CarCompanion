@@ -60,10 +60,10 @@ public class CarMaintHighLevel extends AppCompatActivity {
         final String currentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
         final String currentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
         final String currentCarMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_MILES");
-        final String currentOilChange = previousScreenIntent.getStringExtra("CURRENT_CAR_OIL");
-        final String currentYearlyMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_YEAR_MILES");
+//        final String currentOilChange = previousScreenIntent.getStringExtra("CURRENT_CAR_OIL");
+//        final String currentYearlyMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_YEAR_MILES");
 
-        final String[]currentCar = new String[]{currentCarYear, currentCarMake, currentCarModel, currentCarMiles, currentYearlyMiles, currentOilChange};
+        final String[]currentCar = new String[]{currentCarYear, currentCarMake, currentCarModel, currentCarMiles};//, currentYearlyMiles, currentOilChange};
 //        final String[]currentCar = new String[]{currentCarMake, currentCarModel};
 
         mTxtViewUpcomingMaint.setText("Your " + currentCarMake + " " + currentCarModel + " is nearing: " + "");
@@ -113,5 +113,4 @@ public void toastMessage(String msg)
         {
         Toast.makeText(getApplicationContext(), msg,Toast.LENGTH_SHORT).show();
         }
-
 }

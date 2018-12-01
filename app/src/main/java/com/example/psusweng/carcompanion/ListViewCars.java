@@ -3,6 +3,8 @@ package com.example.psusweng.carcompanion;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class ListViewCars extends AppCompatActivity {
@@ -21,6 +30,12 @@ public class ListViewCars extends AppCompatActivity {
     private static final String TAG = "ListAllCarsActivity";
 
     DatabaseHelper mDatabaseHelper;
+
+    FirebaseDatabase firebaseDatabase = null;
+    DatabaseReference databaseReference = null;
+
+    ArrayList<CarHelper> dbCars;
+    ArrayList<String> listData;
 
     private ListView mListView;
     private Button mBtnDeleteAll;
@@ -34,9 +49,12 @@ public class ListViewCars extends AppCompatActivity {
         mDatabaseHelper = new DatabaseHelper(this);
         mBtnDeleteAll = (Button)findViewById(R.id.btnDeleteAll);
 
-        populateListView();
+        dbCars = new ArrayList<>();
 
-        mBtnDeleteAll.setOnClickListener(new View.OnClickListener() {
+        LoadFirebaseCars();
+
+        mBtnDeleteAll.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 mDatabaseHelper.deleteAllCars();
@@ -47,57 +65,93 @@ public class ListViewCars extends AppCompatActivity {
                 startActivity(goToCarSelect);
             }
         });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+            {
+                CarHelper selectedCar = dbCars.get(position);
+
+                Intent goToMaintHighLevel = new Intent(ListViewCars.this, CarMaintHighLevel.class);
+
+                goToMaintHighLevel.putExtra("CURRENT_CAR_YEAR", String.valueOf(selectedCar.Year));
+                goToMaintHighLevel.putExtra("CURRENT_CAR_MAKE", selectedCar.Make);
+                goToMaintHighLevel.putExtra("CURRENT_CAR_MODEL",selectedCar.Model);
+                goToMaintHighLevel.putExtra("CURRENT_CAR_MILES",selectedCar.Mileage);
+                goToMaintHighLevel.putExtra("CURRENT_CAR_YEAR_MILES",selectedCar.EstYearlyMiles);
+                goToMaintHighLevel.putExtra("CURRENT_CAR_OIL",selectedCar.LastOilChange);
+                startActivity(goToMaintHighLevel);
+
+            }
+        });
     }
 
     @Override
     protected void onResume()
     {
         super.onResume();
-        populateListView();
     }
 
-    private void populateListView()
+
+
+    public void LoadFirebaseCars()
     {
-        Log.d(TAG, "populateListView: Display data in the ListView.");
-        // Get the data from the database and append to the ListView.
-        Cursor data = mDatabaseHelper.getAllCars();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
-        ArrayList<String> listData = new ArrayList<>();
+        listData = new ArrayList<>();
 
-        while(data.moveToNext())
-        {
-            // Get the data from the database in column 1
-            // then add it to the ListView.
-            listData.add(data.getString(1) + " " + data.getString(2) + " " + data.getString(3) + " " + data.getString(4)); // Year Make Model Miles
-        }
-
-        ListAdapter adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listData);
-        mListView.setAdapter(adapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
-            {
-                String car = adapterView.getItemAtPosition(position).toString();
-                String[] temp = car.split(" ");
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                dbCars.clear();
+                for(DataSnapshot databaseCars : dataSnapshot.getChildren()) {
 
-                Cursor data = mDatabaseHelper.getOneCar(temp);
+                    CarHelper car = databaseCars.getValue(CarHelper.class);
 
-                Intent goToMaintHighLevel = new Intent(ListViewCars.this, CarMaintHighLevel.class);
-
-                data.moveToFirst();
-                String year = data.getString(1);
-
-                goToMaintHighLevel.putExtra("CURRENT_CAR_YEAR", data.getString(1));
-                goToMaintHighLevel.putExtra("CURRENT_CAR_MAKE", data.getString(2));
-                goToMaintHighLevel.putExtra("CURRENT_CAR_MODEL",data.getString(3));
-                goToMaintHighLevel.putExtra("CURRENT_CAR_MILES",data.getString(4));
-                goToMaintHighLevel.putExtra("CURRENT_CAR_YEAR_MILES",data.getString(5));
-                goToMaintHighLevel.putExtra("CURRENT_CAR_OIL",data.getString(6));
-                startActivity(goToMaintHighLevel);
+                    displayCarsInListView(car);
+                    Log.d(TAG, "A car was added.");
+                    dbCars.add(car);
+                }
 
             }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+
         });
+
+    }
+
+    public void displayCarsInListView(CarHelper car)
+    {
+        Log.d(TAG, "\n : Added car to listView.\n");
+        // Get the data from the database in column 1
+        // then add it to the ListView.
+        listData.add(String.valueOf(car.Year) + " " + car.Make + " " + car.Model
+                + "\nCurrent Mileage: " + String.valueOf(car.Mileage)
+                + "\nEst. Miles/Year: " + String.valueOf(car.EstYearlyMiles)
+                + "\nLast Oil Change: " + car.LastOilChange);
+
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        mListView.setAdapter(adapter);
     }
 
     private void toastMessage(String msg)

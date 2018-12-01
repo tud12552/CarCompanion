@@ -15,15 +15,6 @@ import android.widget.Toast;
 
 public class AddCarActivity extends AppCompatActivity
 {
-    private TextView mTxtViewScreenTitle = null;
-    private TextView mTxtViewMake = null;
-    private TextView mTxtViewYear = null;
-    private TextView mTxtViewModel = null;
-    private TextView mTxtViewMilage = null;
-    private TextView mTxtViewEstMilageYear = null;
-    private TextView mTxtViewUploadPhoto = null;
-    private TextView mTxtViewLasOilChange = null;
-
     private Spinner mSpinMake = null;
     private Spinner mSpinModel = null;
 

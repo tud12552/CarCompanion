@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "376494866029",
+    "firebase_url": "https://carcompanion-a7450.firebaseio.com",
+    "project_id": "carcompanion-a7450",
+    "storage_bucket": "carcompanion-a7450.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376494866029:android:43e6eda94b587b7e",
+        "android_client_info": {
+          "package_name": "com.example.psusweng.carcompanion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376494866029-f4fgeci8rvjp30jb3g5ibt93smto8e3b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.psusweng.carcompanion",
+            "certificate_hash": "fa2dadda42ee0d70486028277c45d476a0f4c498"
+          }
+        },
+        {
+          "client_id": "376494866029-4qd5bf66q3loccfd9rb2378m0vt2gavu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAEFgnsQxVkT8dUqMGkqJDCuPSOuMOX6w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376494866029-4qd5bf66q3loccfd9rb2378m0vt2gavu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
