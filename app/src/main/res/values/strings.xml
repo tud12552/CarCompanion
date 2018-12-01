@@ -51,4 +51,7 @@
 
     <string name="DeleteCar">DELETE</string>
     <string name="deleteAll">Delete All Cars</string>
+    <string name="EmailAddress">Enter Email Address</string>
+    <string name="Password">Enter Password</string>
+    <string name="SignIn">Sign In</string>
 </resources>
