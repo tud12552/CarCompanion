@@ -51,16 +51,16 @@ public class MaintenanceActivity extends AppCompatActivity {
         mBtnPartStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"@string/openInternetStr", Toast.LENGTH_SHORT).show();
-                // Implement going to internet to browse for a part store
+                Toast.makeText(getApplicationContext(), R.string.nearbyAutoPartStores, Toast.LENGTH_SHORT).show();
+                goToGoogleForAutoPartsStore(v);
             }
         });
 
         mBtnDealers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "@string/openInternetStr", Toast.LENGTH_SHORT).show();
-                // Implement going to internet to browse for an applicable dealer.
+                Toast.makeText(getApplicationContext(), R.string.nearbyDealerships, Toast.LENGTH_SHORT).show();
+                goToGoogleForDealerships(v);
             }
         });
 
@@ -76,8 +76,21 @@ public class MaintenanceActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
+    }
+
+    public void goToGoogleForAutoPartsStore (View view) {
+        goToUrl("https://www.google.com/maps/search/auto+parts+store");
+    }
+
+    public void goToGoogleForDealerships (View view) {
+        goToUrl("https://www.google.com/maps/search/"+mCurrentCarMake+"+dealerships");
+    }
+
+    private void goToUrl (String url) {
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra("url", url);
+        startActivity(intent);
     }
 }
