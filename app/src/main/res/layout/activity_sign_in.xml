@@ -8,19 +8,20 @@
     tools:context=".SignIn">
 
     <EditText
-        android:id="@+id/emailAddress"
-        android:hint="@string/EmailAddress"
-        android:autofillHints="@string/EmailAddress"
-        android:inputType="textEmailAddress"
+        android:id="@+id/editTxtEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        android:autofillHints="@string/EmailAddress"
+        android:hint="@string/EmailAddress"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/edittxtPass"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/edittxtPass"
         android:hint="@string/Password"
         android:autofillHints="@string/Password"
         android:inputType="textPassword"
@@ -29,7 +30,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTxtEmailAddress"/>
 
     <Button
         android:id="@+id/btnSignIn"
@@ -40,7 +41,20 @@
         android:text="@string/SignIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/edittxtPass"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteY="177dp" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/Signup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+
 </android.support.constraint.ConstraintLayout>

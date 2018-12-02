@@ -54,6 +54,7 @@
     <string name="EmailAddress">Enter Email Address</string>
     <string name="Password">Enter Password</string>
     <string name="SignIn">Sign In</string>
+    <string name="Signup">Sign Up</string>
 
     <string name="nearbyAutoPartsStores">Loading nearby auto parts stores...</string>
     <string name="nearbyDealerships">Loading nearby dealerships...</string>
