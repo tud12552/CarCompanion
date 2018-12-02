@@ -51,7 +51,7 @@ public class MaintenanceActivity extends AppCompatActivity {
         mBtnPartStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), R.string.nearbyAutoPartStores, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.nearbyAutoPartsStores, Toast.LENGTH_SHORT).show();
                 goToGoogleForAutoPartsStore(v);
             }
         });

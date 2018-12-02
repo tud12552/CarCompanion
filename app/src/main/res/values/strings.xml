@@ -55,6 +55,6 @@
     <string name="Password">Enter Password</string>
     <string name="SignIn">Sign In</string>
 
-    <string name="nearbyAutoPartStores">Loading nearby auto part stores...</string>
+    <string name="nearbyAutoPartsStores">Loading nearby auto parts stores...</string>
     <string name="nearbyDealerships">Loading nearby dealerships...</string>
 </resources>
