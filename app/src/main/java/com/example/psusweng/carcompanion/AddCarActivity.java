@@ -45,7 +45,7 @@ public class AddCarActivity extends AppCompatActivity
 
     private int i = 0;
 
-//    DatabaseHelper mDatabaseHelper;
+    DatabaseHelper mDatabaseHelper;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference makesRef;
@@ -69,7 +69,7 @@ public class AddCarActivity extends AppCompatActivity
         mSpinModel.setEnabled(false);
 
 
-//        mDatabaseHelper = new DatabaseHelper(this);
+        mDatabaseHelper = new DatabaseHelper(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserCars");
         makesRef = firebaseDatabase.getReference("Makes");
@@ -151,8 +151,6 @@ public class AddCarActivity extends AppCompatActivity
                 if(okToAdd)
                 {
                     AddNewCar(make, model, year, miles, yearlyMileage, lastOilChange);
-                    Intent goToCarSelect = new Intent(AddCarActivity.this, CarSelectActivity.class);
-                    startActivity(goToCarSelect);
                 }
             }
         });
@@ -162,15 +160,19 @@ public class AddCarActivity extends AppCompatActivity
     {
 //        boolean insertData = mDatabaseHelper.addNewCar(make, model, year, miles, YearlyMiles, LastOilChange);
         // String LastOilChange, int Year, int EstYearlyMiles, int Mileage, String Model, String Make
-        CarHelper newCar = new CarHelper(LastOilChange, Integer.parseInt(year), Integer.parseInt(YearlyMiles), Integer.parseInt(miles), model, make);
-        databaseReference.push().setValue(newCar);
+        final CarHelper newCar = new CarHelper(LastOilChange, Integer.parseInt(year), Integer.parseInt(YearlyMiles), Integer.parseInt(miles), model, make);
 
-        makesRef.push().setValue(make);
+        databaseReference.push().setValue(newCar);
+        makesRef.push().setValue(newCar.Make);
+
 
     boolean insertData = true;
         if(insertData)
         {
             toastMessage("Car Successfully Added.");
+
+            Intent goToCarSelect = new Intent(AddCarActivity.this, CarSelectActivity.class);
+            startActivity(goToCarSelect);
         }
         else
         {
