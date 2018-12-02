@@ -1,7 +1,9 @@
 package com.example.psusweng.carcompanion;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,12 +37,13 @@ public class AddCarActivity extends AppCompatActivity
     private EditText mEditTxtEstMilesYear = null;
 
     private ImageButton mImageBtnUploadPhoto = null;
-
     private Button mBtnAddCar = null;
+    private ImageView mImageView = null;
 
     private String mSelectedMake;
     private String mSelectedModel;
     private static final String TAG = "AddCarActivity";
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private ArrayList<String> makes;
 
@@ -64,6 +68,7 @@ public class AddCarActivity extends AppCompatActivity
         mEditTxtOilChange = (EditText)findViewById(R.id.lastOilChangeBox);
         mEditTxtYear = (EditText)findViewById(R.id.enterYearBox);
 
+        mImageBtnUploadPhoto = (ImageButton) findViewById(R.id.uploadPhotoBtn);
         mBtnAddCar = (Button)findViewById(R.id.addCarBtn);
 
         mSpinModel.setEnabled(false);
@@ -73,6 +78,14 @@ public class AddCarActivity extends AppCompatActivity
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserCars");
         makesRef = firebaseDatabase.getReference("Makes");
+
+        mImageBtnUploadPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Uploading photo", Toast.LENGTH_SHORT).show();
+                dispatchTakePictureIntent();
+            }
+        });
 
         mSpinMake.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -187,5 +200,21 @@ public class AddCarActivity extends AppCompatActivity
     public void toastMessage(String msg)
     {
         Toast.makeText(getApplicationContext(), msg,Toast.LENGTH_SHORT).show();
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(imageBitmap);
+        }
     }
 }
