@@ -107,7 +107,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/UploadPhotoStr"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/addCarBtn"
+        app:layout_constraintBottom_toTopOf="@+id/layoutButtons_ActivityAddCar"
         app:layout_constraintEnd_toStartOf="@+id/uploadPhotoBtn"
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
@@ -218,19 +218,59 @@
         app:layout_constraintVertical_bias="0.076"
         tools:srcCompat="@mipmap/hyundai_elantra_foreground" />
 
+    <LinearLayout
+        android:id="@+id/layoutButtons_ActivityAddCar"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPhotoLabel"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/pullMileageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/PullTotalMiles" />
+        <Button
+            android:id="@+id/addCarBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/AddCarBtnStr" />
+    </LinearLayout>
+<!--
     <Button
-        android:id="@+id/addCarBtn"
+        android:id="@+id/pullMileageBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/AddCarBtnStr"
+        android:text="@string/PullTotalMiles"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addCarBtn"
         app:layout_constraintTop_toBottomOf="@+id/uploadPhotoLabel" />
 
+    <Button
+        android:id="@+id/addCarBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/AddCarBtnStr"
+        app:layout_constraintStart_toEndOf="@+id/pullMileageBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPhotoLabel" />
+-->
 
 </android.support.constraint.ConstraintLayout>

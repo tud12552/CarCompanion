@@ -24,6 +24,7 @@
     <string name="CarYearHintStr">2018</string>
     <string name="CarCurrentMileageStr">Mileage</string>
     <string name="CarCurrentMileageHintStr">50000</string>
+    <string name="PullTotalMiles">Pull Mileage</string>
     <string name="LastOilChangeStr">Last Oil Change</string>
     <string name="LastOilChangeHintStr">05/20/2018</string>
     <string name="UploadPhotoStr">Upload Photo</string>

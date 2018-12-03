@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.psusweng.carcompanion.Data.J1939Data;
+import com.example.psusweng.carcompanion.Demo.BlueToothHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +41,7 @@ public class AddCarActivity extends AppCompatActivity
     private ImageButton mImageBtnUploadPhoto = null;
     private Button mBtnAddCar = null;
     private ImageView mImageView = null;
+    private Button mBtnPullEngineMiles = null;
 
     private String mSelectedMake;
     private String mSelectedModel;
@@ -53,6 +56,8 @@ public class AddCarActivity extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference makesRef;
+
+    private BlueToothHelper blueToothHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,7 @@ public class AddCarActivity extends AppCompatActivity
 
         mImageBtnUploadPhoto = (ImageButton) findViewById(R.id.uploadPhotoBtn);
         mBtnAddCar = (Button)findViewById(R.id.addCarBtn);
+        mBtnPullEngineMiles = (Button)findViewById(R.id.pullMileageBtn);
 
         mSpinModel.setEnabled(false);
 
@@ -78,6 +84,8 @@ public class AddCarActivity extends AppCompatActivity
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserCars");
         makesRef = firebaseDatabase.getReference("Makes");
+
+        blueToothHelper = new BlueToothHelper();
 
         mImageBtnUploadPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +175,17 @@ public class AddCarActivity extends AppCompatActivity
                     Intent goToCarSelect = new Intent(AddCarActivity.this, CarSelectActivity.class);
                     startActivity(goToCarSelect);
                 }
+            }
+        });
+
+        mBtnPullEngineMiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toastMessage("Pulling data from vehicle network.");
+                J1939Data item = blueToothHelper.Upload();
+                Double miles = item.getDistanceTotal() * 0.621;
+                mEditTxtMilage.setText(miles+"");
+                Log.d(TAG, "Mileage is " + item.getDistanceTotal());
             }
         });
     }
