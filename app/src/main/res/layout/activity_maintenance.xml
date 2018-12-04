@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MaintenanceActivity">
 
+    <ImageButton
+        android:id="@+id/imageButtonStats"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/TrackStats"
+        android:src="@drawable/charts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDealers"
+        app:layout_constraintBottom_toTopOf="@+id/buttonExportReport"
+        tools:srcCompat="@tools:sample/avatars[3]" />
+
     <ImageView
         android:id="@+id/CurrentCarPic"
         android:layout_width="165dp"
@@ -104,6 +119,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDealers" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonStats"
+        app:layout_constraintVertical_bias="0.873" />
 
 </android.support.constraint.ConstraintLayout>
