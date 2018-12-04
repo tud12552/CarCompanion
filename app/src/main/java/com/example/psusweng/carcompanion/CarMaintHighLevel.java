@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CarMaintHighLevel extends AppCompatActivity {
 
-    private int mGalOfGas;
+    private Double mGalOfGas;
     private TextView mTxTViewScreenTitle = null;
     private TextView mTxtViewUpcomingMaint = null;
     private TextView mTxtViewRecentGas = null;
@@ -29,7 +29,6 @@ public class CarMaintHighLevel extends AppCompatActivity {
     private TextView mTxtViewFuelPrice = null;
     private Button mBtnAddGas = null;
     private Button mBtnViewAllMaint = null;
-    private Button mBtnDelete = null;
     private EditText mEditTxtRefuelGals =  null;
     private EditText mEditTxtRefuelGalsPrice = null;
     private ImageView mImageViewCurrentCarPic = null;
@@ -45,7 +44,7 @@ public class CarMaintHighLevel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_maint_high_level);
 
-        mGalOfGas = 12;
+        mGalOfGas = 12.000;
         mTxTViewScreenTitle = (TextView)findViewById(R.id.txtViewScreenTitle);
         mTxtViewUpcomingMaint = (TextView)findViewById(R.id.txtViewUpcomingCarMaint);
         mTxtViewRecentGas = (TextView)findViewById(R.id.txtViewRecentGas);
@@ -54,7 +53,6 @@ public class CarMaintHighLevel extends AppCompatActivity {
 
         mBtnAddGas = (Button)findViewById(R.id.btnAddGas);
         mBtnViewAllMaint = (Button)findViewById(R.id.btnViewAllMaint);
-        mBtnDelete = (Button)findViewById(R.id.btnDelete);
 
 
         mEditTxtRefuelGals = (EditText) findViewById(R.id.editTxtRefuelGals);
@@ -71,20 +69,18 @@ public class CarMaintHighLevel extends AppCompatActivity {
         final String currentCarMake = previousScreenIntent.getStringExtra("CURRENT_CAR_MAKE");
         final String currentCarModel = previousScreenIntent.getStringExtra("CURRENT_CAR_MODEL");
         final String currentCarMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_MILES");
-//        final String currentOilChange = previousScreenIntent.getStringExtra("CURRENT_CAR_OIL");
-//        final String currentYearlyMiles = previousScreenIntent.getStringExtra("CURRENT_CAR_YEAR_MILES");
 
-        final String[]currentCar = new String[]{currentCarYear, currentCarMake, currentCarModel, currentCarMiles};//, currentYearlyMiles, currentOilChange};
-//        final String[]currentCar = new String[]{currentCarMake, currentCarModel};
+        final String[]currentCar = new String[]{currentCarYear, currentCarMake, currentCarModel, currentCarMiles};
 
         mTxtViewUpcomingMaint.setText("Your " + currentCarMake + " " + currentCarModel + " is nearing: " + "");
 
         mBtnAddGas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"@string/GasAddedMsgStr", Toast.LENGTH_SHORT).show();
-
-                mGalOfGas = Integer.parseInt(mEditTxtRefuelGals.getText().toString());
+                toastMessage("You successfully updated your gas.");
+                mGalOfGas = Double.valueOf(mEditTxtRefuelGals.getText().toString());
+                mEditTxtRefuelGals.setText("");
+                mEditTxtRefuelGalsPrice.setText("");
 
             }
         });
@@ -99,18 +95,6 @@ public class CarMaintHighLevel extends AppCompatActivity {
                goToFullMaintenanceScreen.putExtra("CURRENT_CAR_MODEL",currentCarModel);
                startActivity(goToFullMaintenanceScreen);
            }
-        });
-
-        mBtnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                databaseHelper.deleteCar(currentCar);
-
-                toastMessage("Deleted from database.");
-
-                Intent goBack = new Intent(CarMaintHighLevel.this,ListViewCars.class);
-                startActivity(goBack);
-            }
         });
     }
 

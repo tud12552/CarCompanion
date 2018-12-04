@@ -25,8 +25,6 @@ public class MaintenanceActivity extends AppCompatActivity {
     private Button mBtnDealers = null;
     private Button mBtnExportReport = null;
 
-    private ImageButton mImageBtnStats = null;
-
     String mCurrentCarModel, mCurrentCarMake;
 
     @Override
@@ -46,8 +44,6 @@ public class MaintenanceActivity extends AppCompatActivity {
         mBtnDealers = (Button)findViewById(R.id.buttonDealers);
         mBtnExportReport = (Button) findViewById(R.id.buttonExportReport);
 
-        mImageBtnStats = (ImageButton)findViewById(R.id.imageButtonStats);
-
         mBtnPartStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,16 +57,6 @@ public class MaintenanceActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), R.string.nearbyDealerships, Toast.LENGTH_SHORT).show();
                 goToGoogleForDealerships(v);
-            }
-        });
-
-        mImageBtnStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToStatsScreen = new Intent(MaintenanceActivity.this,StatsActivity.class);
-                goToStatsScreen.putExtra("CAR_MAKE",mCurrentCarMake);
-                goToStatsScreen.putExtra("CAR_MODEL",mCurrentCarModel);
-                startActivity(goToStatsScreen);
             }
         });
     }
