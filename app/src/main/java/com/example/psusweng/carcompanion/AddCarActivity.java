@@ -183,9 +183,14 @@ public class AddCarActivity extends AppCompatActivity
             public void onClick(View v) {
                 toastMessage("Pulling data from vehicle network.");
                 J1939Data item = blueToothHelper.Upload();
-                Double miles = item.getDistanceTotal() * 0.621;
-                mEditTxtMilage.setText(miles+"");
-                Log.d(TAG, "Mileage is " + item.getDistanceTotal());
+                if (item == null)  // No connection
+                {
+                    toastMessage("Not paired with OBDII Adapter");
+                } else {
+                    Double miles = item.getDistanceTotal() * 0.621;  // conversion from km to miles
+                    mEditTxtMilage.setText(miles + "");
+                    Log.d(TAG, "Mileage is " + item.getDistanceTotal());
+                }
             }
         });
     }

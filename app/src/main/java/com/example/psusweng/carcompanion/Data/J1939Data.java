@@ -10,9 +10,13 @@ import java.io.Serializable;
 // "Suspect Parameter Number" (SPN).  All data is broadcast
 // in metric units.
 public class J1939Data implements Serializable {
-    private Double DistanceTotal;  // PGN?, SPN?, may be unique to vendors
-    private Double FuelTotal;  // PGN 65257, SPN 250, 0.05 hours per bit
-    private Double HoursTotal;  // PGN 65253, SPN 247, 0.5 liters per bit
+    private Double DistanceTotal;  // PGN 65248, SPN 245, 0.125 km per bit
+    private Double FuelTotal;  // PGN 65253, SPN 247, 0.5 liters per bit
+    private Double HoursTotal;  // PGN 65257, SPN 250, 0.05 hours per bit
+
+    private static Double SPN_245_CONV = 0.125;
+    private static Double SPN_250_CONV = 0.05;
+    private static Double SPN_247_CONV = 0.5;
 
     public J1939Data() {}
     public J1939Data(Double distance, Double fuel, Double hours) {
@@ -21,28 +25,16 @@ public class J1939Data implements Serializable {
         this.HoursTotal = hours;
     }
 
-    public Double getDistanceTotal() {
-        return DistanceTotal;
-    }
-
-    public void setDistanceTotal(Double distanceTotal) {
-        DistanceTotal = distanceTotal;
+    public Double getDistanceTotal() {  // In kilometers
+        return DistanceTotal * SPN_245_CONV;
     }
 
     public Double getFuelTotal() {
-        return FuelTotal;
-    }
-
-    public void setFuelTotal(Double fuelTotal) {
-        FuelTotal = fuelTotal;
+        return FuelTotal * SPN_250_CONV;
     }
 
     public Double getHoursTotal() {
-        return HoursTotal;
-    }
-
-    public void setHoursTotal(Double hoursTotal) {
-        HoursTotal = hoursTotal;
+        return HoursTotal * SPN_247_CONV;
     }
 
 }
