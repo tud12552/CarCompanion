@@ -3,7 +3,9 @@
     package="com.example.psusweng.carcompanion">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
 
     <application
@@ -13,15 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CarMaintHighLevel"
+        <activity
+            android:name=".CarMaintHighLevel"
             android:theme="@style/AppMenuTheme" />
         <activity android:name=".AddCarActivity" />
         <activity
             android:name=".MaintenanceActivity"
             android:label="@string/CarMaintHighTitleStr" />
-        <activity android:name=".CarSelectActivity">
-
-        </activity>
+        <activity android:name=".CarSelectActivity"></activity>
         <activity android:name=".ListViewCars" />
         <activity android:name=".SignIn">
             <intent-filter>
@@ -30,7 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".WebViewActivity" />
+        <activity android:name=".StatsActivity"></activity>
     </application>
 
 </manifest>

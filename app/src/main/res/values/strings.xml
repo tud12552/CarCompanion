@@ -59,4 +59,7 @@
 
     <string name="nearbyAutoPartsStores">Loading nearby auto parts stores...</string>
     <string name="nearbyDealerships">Loading nearby dealerships...</string>
+
+    <string name="no_connection">No Valid Bluetooth Connection</string>
+    <string name="no_data">No Data</string>
 </resources>
