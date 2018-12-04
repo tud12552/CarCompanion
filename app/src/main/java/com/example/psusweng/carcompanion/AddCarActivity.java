@@ -9,25 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.psusweng.carcompanion.Data.J1939Data;
 import com.example.psusweng.carcompanion.Demo.BlueToothHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-
 public class AddCarActivity extends AppCompatActivity
 {
     private Spinner mSpinMake = null;
@@ -48,11 +45,7 @@ public class AddCarActivity extends AppCompatActivity
     private static final String TAG = "AddCarActivity";
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private ArrayList<String> makes;
-
-    private int i = 0;
-
-//    DatabaseHelper mDatabaseHelper;
+    DatabaseHelper mDatabaseHelper;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference makesRef;
@@ -80,7 +73,7 @@ public class AddCarActivity extends AppCompatActivity
         mSpinModel.setEnabled(false);
 
 
-//        mDatabaseHelper = new DatabaseHelper(this);
+        mDatabaseHelper = new DatabaseHelper(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("UserCars");
         makesRef = firebaseDatabase.getReference("Makes");
@@ -104,10 +97,6 @@ public class AddCarActivity extends AppCompatActivity
                 {
                     toastMessage("You chose " + mSelectedMake);
                     mSpinModel.setEnabled(true);
-                }
-                else if(mSelectedMake.equals("Other"))
-                {
-                    // Create the new intent here to add a custom car and add to the appropiate database.
                 }
             }
 
@@ -144,7 +133,6 @@ public class AddCarActivity extends AppCompatActivity
                 String lastOilChange = mEditTxtOilChange.getText().toString();
 
                 Boolean okToAdd = true;
-                Boolean loopBool = true;
                 int i = 0;
 
                 String[] NewCar = new String[6];
@@ -192,22 +180,44 @@ public class AddCarActivity extends AppCompatActivity
 
     public void AddNewCar(String make, String model, String year, String miles, String YearlyMiles, String LastOilChange)
     {
-//        boolean insertData = mDatabaseHelper.addNewCar(make, model, year, miles, YearlyMiles, LastOilChange);
-        // String LastOilChange, int Year, int EstYearlyMiles, int Mileage, String Model, String Make
-        CarHelper newCar = new CarHelper(LastOilChange, Integer.parseInt(year), Integer.parseInt(YearlyMiles), Integer.parseInt(miles), model, make);
-        databaseReference.push().setValue(newCar);
+        final CarHelper newCar = new CarHelper(LastOilChange, Integer.parseInt(year), Integer.parseInt(YearlyMiles), Double.valueOf(miles), model, make);
+        databaseReference.push().setValue(newCar).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                boolean insertData = task.isSuccessful();
+                if(insertData)
+                {
+                    toastMessage("Car Successfully Added.");
+                }
+                else
+                {
+                    toastMessage("Car Was Not Added.");
+                }
+            }
+        });
 
-        makesRef.push().setValue(make);
+        makesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            boolean tempMake;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot makes : dataSnapshot.getChildren()) {
+                    tempMake = makes.getValue().equals(newCar.Make);
+                    if(tempMake)
+                    {
+                        break;
+                    }
+                }
+                if(!tempMake)
+                {
+                    makesRef.push().setValue(newCar.Make);
+                }
+            }
 
-    boolean insertData = true;
-        if(insertData)
-        {
-            toastMessage("Car Successfully Added.");
-        }
-        else
-        {
-            toastMessage("Car Was Not Added.");
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

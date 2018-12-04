@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CarMaintHighLevel extends AppCompatActivity {
 
-    private int mGalOfGas;
+    private Double mGalOfGas;
     private TextView mTxTViewScreenTitle = null;
     private TextView mTxtViewUpcomingMaint = null;
     private TextView mTxtViewRecentGas = null;
@@ -45,7 +45,7 @@ public class CarMaintHighLevel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_maint_high_level);
 
-        mGalOfGas = 12;
+        mGalOfGas = 12.000;
         mTxTViewScreenTitle = (TextView)findViewById(R.id.txtViewScreenTitle);
         mTxtViewUpcomingMaint = (TextView)findViewById(R.id.txtViewUpcomingCarMaint);
         mTxtViewRecentGas = (TextView)findViewById(R.id.txtViewRecentGas);
@@ -82,9 +82,10 @@ public class CarMaintHighLevel extends AppCompatActivity {
         mBtnAddGas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"@string/GasAddedMsgStr", Toast.LENGTH_SHORT).show();
-
-                mGalOfGas = Integer.parseInt(mEditTxtRefuelGals.getText().toString());
+                toastMessage("You successfully updated your gas.");
+                mGalOfGas = Double.valueOf(mEditTxtRefuelGals.getText().toString());
+                mEditTxtRefuelGals.setText("");
+                mEditTxtRefuelGalsPrice.setText("");
 
             }
         });
