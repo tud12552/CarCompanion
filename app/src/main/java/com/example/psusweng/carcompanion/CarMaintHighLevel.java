@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
- import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -77,11 +77,16 @@ public class CarMaintHighLevel extends AppCompatActivity {
         mBtnAddGas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toastMessage("You successfully updated your gas.");
-                mGalOfGas = Double.valueOf(mEditTxtRefuelGals.getText().toString());
-                mEditTxtRefuelGals.setText("");
-                mEditTxtRefuelGalsPrice.setText("");
-
+                if(mEditTxtRefuelGals.getText().toString().isEmpty() || mEditTxtRefuelGalsPrice.getText().toString().isEmpty())
+                {
+                    toastMessage("You must enter a price and number of gallons.");
+                }
+                else {
+                    toastMessage("You successfully updated your gas.");
+                    mGalOfGas = Double.valueOf(mEditTxtRefuelGals.getText().toString());
+                    mEditTxtRefuelGals.setText("");
+                    mEditTxtRefuelGalsPrice.setText("");
+                }
             }
         });
 
