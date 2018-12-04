@@ -16,7 +16,7 @@ public class MaintenanceActivity extends AppCompatActivity {
     private TextView mTxtViewReadyFor = null;
     private TextView mTxtViewSearch = null;
 
-    private ImageView mStats = null;
+    private ImageView mImageViewCurrentCarPic = null;
 
     private CheckBox mCheckBoxOilChange = null;
     private CheckBox mCheckBoxTireRot = null;
@@ -24,6 +24,8 @@ public class MaintenanceActivity extends AppCompatActivity {
     private Button mBtnPartStore = null;
     private Button mBtnDealers = null;
     private Button mBtnExportReport = null;
+
+    private ImageButton mImageBtnStats = null;
 
     String mCurrentCarModel, mCurrentCarMake;
 
@@ -43,7 +45,8 @@ public class MaintenanceActivity extends AppCompatActivity {
         mBtnPartStore = (Button)findViewById(R.id.buttonPartStores);
         mBtnDealers = (Button)findViewById(R.id.buttonDealers);
         mBtnExportReport = (Button) findViewById(R.id.buttonExportReport);
-        mStats = (ImageButton) findViewById(R.id.imageButtonStats);
+
+        mImageBtnStats = (ImageButton)findViewById(R.id.imageButtonStats);
 
         mBtnPartStore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +64,13 @@ public class MaintenanceActivity extends AppCompatActivity {
             }
         });
 
-        mStats.setOnClickListener( new View.OnClickListener() {
+        mImageBtnStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentStats = new Intent(MaintenanceActivity.this, StatsActivity.class);
-                startActivity(intentStats);
+                Intent goToStatsScreen = new Intent(MaintenanceActivity.this,StatsActivity.class);
+                goToStatsScreen.putExtra("CAR_MAKE",mCurrentCarMake);
+                goToStatsScreen.putExtra("CAR_MODEL",mCurrentCarModel);
+                startActivity(goToStatsScreen);
             }
         });
     }
